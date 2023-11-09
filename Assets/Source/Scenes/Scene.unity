@@ -2839,7 +2839,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: -6450824388066389181, guid: 8faaf3b2b07fdb24ab9fc0ea75f1c6b3, type: 3}
-  _pool: []
   _poolSize: 20
 --- !u!114 &1326529203296548701
 MonoBehaviour:

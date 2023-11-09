@@ -8,6 +8,13 @@ public class Bullet : MonoBehaviour
     public bool IsActive { get; private set; }
     public float StartTime { get; private set; }
 
+    private BulletsPool _pool;
+
+    public void Init(BulletsPool pool)
+    {
+        _pool = pool;
+    }
+
     public void Activate(Transform point)
     {
         IsActive = true;
@@ -22,6 +29,7 @@ public class Bullet : MonoBehaviour
         _rigidbody.velocity = Vector3.zero;
         gameObject.SetActive(false);
         IsActive = false;
+        _pool.ReturnBullet(this);
     }
 
     private void OnTriggerEnter(Collider other)

@@ -33,7 +33,7 @@ public class Weapon : MonoBehaviour
     {
         if (Time.time - _lastShootTime > 60 / _frequency)
         {
-            _pool.ActivateBullet(_shootPoint);
+            _pool.GetBullet().Activate(_shootPoint);
             _lastShootTime = Time.time;
             _ammo--;
 
