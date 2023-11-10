@@ -36,10 +36,10 @@ public class Weapon : MonoBehaviour
             _pool.GetBullet().Activate(_shootPoint);
             _lastShootTime = Time.time;
             _ammo--;
-
-            if (_ammo == 0)
-                StartCoroutine(Reload(_reloadDelay));
         }
+        
+        if (_ammo == 0)
+            StartCoroutine(Reload(_reloadDelay));
     }
 
     private IEnumerator Reload(float delay)
