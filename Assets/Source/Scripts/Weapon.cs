@@ -31,12 +31,12 @@ public class Weapon : MonoBehaviour
 
     private void Shoot()
     {
-        if (Time.time - _lastShootTime > 60 / _frequency)
-        {
-            _pool.GetBullet().Activate(_shootPoint);
-            _lastShootTime = Time.time;
-            _ammo--;
-        }
+        if (!(Time.time - _lastShootTime > 60 / _frequency))
+            return;
+        
+        _pool.GetBullet().Activate(_shootPoint);
+        _lastShootTime = Time.time;
+        _ammo--;
         
         if (_ammo == 0)
             StartCoroutine(Reload(_reloadDelay));
