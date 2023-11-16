@@ -3028,7 +3028,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _weapon: {fileID: 1301866258223021084}
   _followSpeed: 50
-  _scopeSwitcher: {fileID: 1326529203296548702}
+  _scope: {fileID: 1326529203296548702}
 --- !u!114 &1326529203296548700
 MonoBehaviour:
   m_ObjectHideFlags: 0
