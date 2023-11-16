@@ -1,7 +1,7 @@
 using TNRD;
 using UnityEngine;
 
-public class ScopeSwitcher : MonoBehaviour
+public class Scope : MonoBehaviour
 {
     [SerializeField] private SerializableInterface<IInput> _input;
     [SerializeField] private Transform _defaultPosition;

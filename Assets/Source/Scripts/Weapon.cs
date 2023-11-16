@@ -23,17 +23,14 @@ public class Weapon : MonoBehaviour
 
     private void Update()
     {
-        if (_input.Value.IsShooting && !_isReloading)
-        {
+        if (CanShoot())
             Shoot();
-        }
     }
 
+    private bool CanShoot() => _input.Value.IsShooting && !_isReloading && (Time.time - _lastShootTime > 60 / _frequency);
+    
     private void Shoot()
     {
-        if (!(Time.time - _lastShootTime > 60 / _frequency))
-            return;
-        
         _pool.GetBullet().Activate(_shootPoint);
         _lastShootTime = Time.time;
         _ammo--;
