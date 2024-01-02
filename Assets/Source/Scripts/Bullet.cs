@@ -1,16 +1,12 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private float _speed;
-    
-    private BulletsPool _pool;
 
-    public void Init(BulletsPool pool)
-    {
-        _pool = pool;
-    }
+    public event UnityAction<Bullet> Deactivated; 
 
     public void Activate(Transform point)
     {
@@ -19,11 +15,11 @@ public class Bullet : MonoBehaviour
         _rigidbody.velocity = -transform.forward * _speed;
     }
 
-    public void Deactivate()
+    private void Deactivate()
     {
         _rigidbody.velocity = Vector3.zero;
         gameObject.SetActive(false);
-        _pool.ReturnBullet(this);
+        Deactivated?.Invoke(this);
     }
 
     private void OnTriggerEnter(Collider other)

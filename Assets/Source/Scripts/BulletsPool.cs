@@ -21,11 +21,12 @@ public class BulletsPool : MonoBehaviour
         return SpawnBullet();
     }
 
-    public void ReturnBullet(Bullet bullet)
+    private void OnDisable()
     {
-        _pool.Enqueue(bullet);
+        foreach (var bullet in _pool)
+            bullet.Deactivated -= OnBulletDeactivated;
     }
-    
+
     private void Init()
     {
         _pool = new Queue<Bullet>();
@@ -35,11 +36,18 @@ public class BulletsPool : MonoBehaviour
             _pool.Enqueue(SpawnBullet());
         }
     }
+    
+    private void OnBulletDeactivated(Bullet bullet)
+    {
+        _pool.Enqueue(bullet);
+    }
 
     private Bullet SpawnBullet()
     {
         Bullet bullet = Instantiate(_bulletPrefab);
-        bullet.Init(this);
+        
+        bullet.Deactivated += OnBulletDeactivated;
+        
         return bullet;
     }
 }
